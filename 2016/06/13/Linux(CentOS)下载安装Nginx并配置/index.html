@@ -1,0 +1,710 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="nginx," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="keywords" content="nginx">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux（CentOS）下，下载安装Nginx并配置">
+<meta property="og:url" content="https://zuimeidaima.com/2016/06/13/Linux(CentOS)下载安装Nginx并配置/index.html">
+<meta property="og:site_name" content="最美代码">
+<meta property="og:image" content="https://zuimeidaima.com/images/1.jpg">
+<meta property="og:updated_time" content="2016-06-21T09:27:50.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux（CentOS）下，下载安装Nginx并配置">
+<meta name="twitter:image" content="https://zuimeidaima.com/images/1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://zuimeidaima.com/2016/06/13/Linux(CentOS)下载安装Nginx并配置/"/>
+
+
+
+
+
+  <title> Linux（CentOS）下，下载安装Nginx并配置 | 最美代码 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">最美代码</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">好记性不如写博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://zuimeidaima.com/2016/06/13/Linux(CentOS)下载安装Nginx并配置/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="夏小天">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="最美代码">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Linux（CentOS）下，下载安装Nginx并配置
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-06-13T14:57:25+08:00">
+                2016-06-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2016/06/13/Linux(CentOS)下载安装Nginx并配置/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/images/1.jpg"></p>
+<a id="more"></a>
+<h2 id="Linux（CentOS）下，下载安装Nginx并配置"><a href="#Linux（CentOS）下，下载安装Nginx并配置" class="headerlink" title="Linux（CentOS）下，下载安装Nginx并配置"></a><a href="http://blog.csdn.net/gaojinshan/article/details/37603157" target="_blank" rel="external">Linux（CentOS）下，下载安装Nginx并配置</a></h2><h4 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h4><p>安装GCC，PCRE（Perl Compatible Regular Expression），zlib，OpenSSL</p>
+<p>查看gcc是否安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ gcc</div><div class="line">如果出现“gcc: no input files”信息，说明已经安装好了.</div><div class="line">否则</div><div class="line">$ yum install gcc # 安装gcc，一路输入 y</div><div class="line">$ gcc -v # 查看版本号</div></pre></td></tr></table></figure>
+<p>同样方法安装pcre zlib openssl(其中devel，是develop开发包的意思)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ yum install -y pcre pcre-devel  </div><div class="line">$ yum install -y zlib zlib-devel  </div><div class="line">$ yum install -y openssl openssl-devel</div></pre></td></tr></table></figure>
+<h4 id="下载并安装nginx"><a href="#下载并安装nginx" class="headerlink" title="下载并安装nginx"></a>下载并安装nginx</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">$ mkdir nginx-src &amp;&amp; cd nginx-src  </div><div class="line">$ wget http://nginx.org/download/nginx-1.8.0.tar.gz  </div><div class="line">$ tar xzf nginx-1.8.0.tar.gz   </div><div class="line">$ cd nginx-1.8.0  </div><div class="line">$ ./configure  </div><div class="line">$ make  </div><div class="line">$ make install  </div><div class="line">$ whereis nginx  </div><div class="line"># nginx: /usr/local/nginx</div><div class="line"># 默认的安装路径为：/usr/local/nginx；跳转到其目录下sbin路径下，便可以启动或停止它了。</div><div class="line">$ cd /usr/local/nginx/sbin</div><div class="line">$ ./nginx -h #help</div><div class="line">$ nginx #启动</div><div class="line">$ nginx -s stop #停止</div></pre></td></tr></table></figure>
+<p> 安装完之后信息说明：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">Configuration summary</div><div class="line">  + using system PCRE library</div><div class="line">  + OpenSSL library is not used</div><div class="line">  + md5: using system crypto library</div><div class="line">  + sha1: using system crypto library</div><div class="line">  + using system zlib library</div><div class="line"></div><div class="line">  nginx path prefix: &quot;/usr/local/nginx&quot;</div><div class="line">  nginx binary file: &quot;/usr/local/nginx/sbin/nginx&quot;</div><div class="line">  nginx configuration prefix: &quot;/usr/local/nginx/conf&quot;</div><div class="line">  nginx configuration file: &quot;/usr/local/nginx/conf/nginx.conf&quot;</div><div class="line">  nginx pid file: &quot;/usr/local/nginx/logs/nginx.pid&quot;</div><div class="line">  nginx error log file: &quot;/usr/local/nginx/logs/error.log&quot;</div><div class="line">  nginx http access log file: &quot;/usr/local/nginx/logs/access.log&quot;</div><div class="line">  nginx http client request body temporary files: &quot;client_body_temp&quot;</div><div class="line">  nginx http proxy temporary files: &quot;proxy_temp&quot;</div><div class="line">  nginx http fastcgi temporary files: &quot;fastcgi_temp&quot;</div><div class="line">  nginx http uwsgi temporary files: &quot;uwsgi_temp&quot;</div><div class="line">  nginx http scgi temporary files: &quot;scgi_temp&quot;</div></pre></td></tr></table></figure>
+<h4 id="添加到系统服务"><a href="#添加到系统服务" class="headerlink" title="添加到系统服务"></a>添加到系统服务</h4><p>使用命令“# vi /etc/init.d/nginx”，打开编辑器，输入如下内容</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/sh</span></div><div class="line"><span class="comment"># chkconfig: 2345 85 15</span></div><div class="line"><span class="comment"># Startup script for the nginx Web Server</span></div><div class="line"><span class="comment"># description: nginx is a World Wide Web server. </span></div><div class="line"><span class="comment"># It is used to serve HTML files and CGI.</span></div><div class="line"><span class="comment"># processname: nginx</span></div><div class="line"><span class="comment"># pidfile: /usr/local/nginx/logs/nginx.pid</span></div><div class="line"><span class="comment"># config: /usr/local/nginx/conf/nginx.conf</span></div><div class="line"></div><div class="line">PATH=/usr/<span class="built_in">local</span>/sbin:/usr/<span class="built_in">local</span>/bin:/sbin:/bin:/usr/sbin:/usr/bin</div><div class="line">DESC=<span class="string">"nginx deamon"</span></div><div class="line">NAME=nginx</div><div class="line">DAEMON=/usr/<span class="built_in">local</span>/nginx/sbin/<span class="variable">$NAME</span></div><div class="line">SCRIPTNAME=/etc/init.d/<span class="variable">$NAME</span></div><div class="line"></div><div class="line"><span class="built_in">test</span> -x <span class="variable">$DAEMON</span> || <span class="built_in">exit</span> 0</div><div class="line"></div><div class="line"><span class="function"><span class="title">d_start</span></span>()&#123;</div><div class="line">  <span class="variable">$DAEMON</span> || <span class="built_in">echo</span> -n <span class="string">"already running"</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="title">d_stop</span></span>()&#123;</div><div class="line">  <span class="variable">$DAEMON</span> <span class="_">-s</span> quit || <span class="built_in">echo</span> -n <span class="string">"not running"</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="title">d_reload</span></span>()&#123;</div><div class="line">  <span class="variable">$DAEMON</span> <span class="_">-s</span> reload || <span class="built_in">echo</span> -n <span class="string">"can not reload"</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">case</span> <span class="string">"<span class="variable">$1</span>"</span> <span class="keyword">in</span></div><div class="line">start)</div><div class="line">  <span class="built_in">echo</span> -n <span class="string">"Starting <span class="variable">$DESC</span>: <span class="variable">$NAME</span>"</span></div><div class="line">  d_start</div><div class="line">  <span class="built_in">echo</span> <span class="string">"."</span></div><div class="line">;;</div><div class="line">stop)</div><div class="line">  <span class="built_in">echo</span> -n <span class="string">"Stopping <span class="variable">$DESC</span>: <span class="variable">$NAME</span>"</span></div><div class="line">  d_stop</div><div class="line">  <span class="built_in">echo</span> <span class="string">"."</span></div><div class="line">;;</div><div class="line">reload)</div><div class="line">  <span class="built_in">echo</span> -n <span class="string">"Reloading <span class="variable">$DESC</span> conf..."</span></div><div class="line">  d_reload</div><div class="line">  <span class="built_in">echo</span> <span class="string">"reload ."</span></div><div class="line">;;</div><div class="line">restart)</div><div class="line">  <span class="built_in">echo</span> -n <span class="string">"Restarting <span class="variable">$DESC</span>: <span class="variable">$NAME</span>"</span></div><div class="line">  d_stop</div><div class="line">  sleep 2</div><div class="line">  d_start</div><div class="line">  <span class="built_in">echo</span> <span class="string">"."</span></div><div class="line">;;</div><div class="line">*)</div><div class="line">  <span class="built_in">echo</span> <span class="string">"Usage: <span class="variable">$ScRIPTNAME</span> &#123;start|stop|reload|restart&#125;"</span> &gt;&amp;2</div><div class="line">  <span class="built_in">exit</span> 3</div><div class="line">;;</div><div class="line"><span class="keyword">esac</span></div><div class="line"></div><div class="line"><span class="built_in">exit</span> 0</div></pre></td></tr></table></figure>
+<p>保存退出后，再使用下面的命令，使其可执行；然后，添加配置并查看。<br>可用chkconfig修改其值，也可用ntsysv工具改变是否自启动。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ chmod +x /etc/init.d/nginx  </div><div class="line">$ chkconfig --add nginx  </div><div class="line">$ chkconfig nginx on/off  </div><div class="line">$ chkconfig --list nginx  </div><div class="line"># nginx 0:off 1:off 2:on 3:on 4:on 5:on 6:off</div></pre></td></tr></table></figure>
+<h4 id="配置文件分散管理，include-usr-local-nginx-conf-d-conf"><a href="#配置文件分散管理，include-usr-local-nginx-conf-d-conf" class="headerlink" title="配置文件分散管理，include /usr/local/nginx/conf.d/*.conf;"></a>配置文件分散管理，include /usr/local/nginx/conf.d/*.conf;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ cd /usr/local/nginx/conf</div><div class="line">$ vim nginx.conf</div><div class="line"># 加入 include /usr/local/nginx/conf.d/*.conf;</div><div class="line">$ cd /usr/local/nginx</div><div class="line">$ mkdir conf.d</div><div class="line">$ cd conf.d</div><div class="line">$ touch a.conf</div><div class="line"># a.conf 加入配置</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line">        listen 80;</div><div class="line">        server_name localhost;</div><div class="line"></div><div class="line">        location / &#123;</div><div class="line">        proxy_pass  http://114.215.93.103:8080;</div><div class="line">        proxy_next_upstream http_500 http_502 http_503 error timeout invalid_header;</div><div class="line">        proxy_redirect off;</div><div class="line">        proxy_ignore_client_abort on;</div><div class="line">        proxy_set_header Host $host;</div><div class="line">        proxy_set_header X-Real-IP $remote_addr;</div><div class="line">        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</div><div class="line">        client_max_body_size 10m;</div><div class="line">        client_body_buffer_size 512k;</div><div class="line">        proxy_connect_timeout 300;</div><div class="line">        proxy_send_timeout 300;</div><div class="line">        proxy_read_timeout 300;</div><div class="line">        proxy_buffer_size 256k;</div><div class="line">        proxy_buffers 4 256k;</div><div class="line">        proxy_busy_buffers_size 256k;</div><div class="line">        proxy_temp_file_write_size 256k;</div><div class="line">#        access_log /opt/wwwlogs/iplat_caihuike_com_access.log;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>注意：nginx.conf里面的默认配置需要注释掉 80 的 server 配置，防止重复配置 localhost</p>
+<h4 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ cd /usr/local/nginx</div><div class="line">$ ./sbin/nginx -t # 测试</div><div class="line">$ ./sbin/nginx -s reload # 重启</div></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/nginx/" rel="tag"># nginx</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/06/22/maven的resources、filter和profile实现不同环境使用不同配置文件/" rel="next" title="maven的resources、filter和profile实现不同环境使用不同配置文件">
+                <i class="fa fa-chevron-left"></i> maven的resources、filter和profile实现不同环境使用不同配置文件
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/06/10/VIM的使用/" rel="prev" title="VIM的使用">
+                VIM的使用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="夏小天" />
+          <p class="site-author-name" itemprop="name">夏小天</p>
+           
+              <p class="site-description motion-element" itemprop="description">人人都是段子手</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">46</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux（CentOS）下，下载安装Nginx并配置"><span class="nav-number">1.</span> <span class="nav-text">Linux（CentOS）下，下载安装Nginx并配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#准备工作"><span class="nav-number">1.0.1.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#下载并安装nginx"><span class="nav-number">1.0.2.</span> <span class="nav-text">下载并安装nginx</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#添加到系统服务"><span class="nav-number">1.0.3.</span> <span class="nav-text">添加到系统服务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置文件分散管理，include-usr-local-nginx-conf-d-conf"><span class="nav-number">1.0.4.</span> <span class="nav-text">配置文件分散管理，include /usr/local/nginx/conf.d/*.conf;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#测试"><span class="nav-number">1.0.5.</span> <span class="nav-text">测试</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">夏小天</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "f0af53cafca946098c02c0c8e838b477",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

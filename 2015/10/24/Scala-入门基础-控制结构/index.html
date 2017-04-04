@@ -1,0 +1,698 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="scala," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="if else  123456789if(A) B else Cdef min(x:Int,y:Int):Int=&amp;#123;     var a=x    if(x&amp;gt;y) a=y    return a &amp;#125;def min(x:Int,y:Int)= if(x&amp;gt;y) y else x  while  12345while(A) Bdo B while(A)值得注意的是,wh">
+<meta name="keywords" content="scala">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Scala 入门基础(控制结构)">
+<meta property="og:url" content="https://zuimeidaima.com/2015/10/24/Scala-入门基础-控制结构/index.html">
+<meta property="og:site_name" content="最美代码">
+<meta property="og:description" content="if else  123456789if(A) B else Cdef min(x:Int,y:Int):Int=&amp;#123;     var a=x    if(x&amp;gt;y) a=y    return a &amp;#125;def min(x:Int,y:Int)= if(x&amp;gt;y) y else x  while  12345while(A) Bdo B while(A)值得注意的是,wh">
+<meta property="og:updated_time" content="2016-06-17T14:16:15.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Scala 入门基础(控制结构)">
+<meta name="twitter:description" content="if else  123456789if(A) B else Cdef min(x:Int,y:Int):Int=&amp;#123;     var a=x    if(x&amp;gt;y) a=y    return a &amp;#125;def min(x:Int,y:Int)= if(x&amp;gt;y) y else x  while  12345while(A) Bdo B while(A)值得注意的是,wh">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://zuimeidaima.com/2015/10/24/Scala-入门基础-控制结构/"/>
+
+
+
+
+
+  <title> Scala 入门基础(控制结构) | 最美代码 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">最美代码</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">好记性不如写博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://zuimeidaima.com/2015/10/24/Scala-入门基础-控制结构/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="夏小天">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="最美代码">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Scala 入门基础(控制结构)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-10-24T14:25:17+08:00">
+                2015-10-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2015/10/24/Scala-入门基础-控制结构/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>if else</p>
+</blockquote>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(<span class="type">A</span>) <span class="type">B</span> <span class="keyword">else</span> <span class="type">C</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">min</span></span>(x:<span class="type">Int</span>,y:<span class="type">Int</span>):<span class="type">Int</span>=&#123; </div><div class="line">    <span class="keyword">var</span> a=x</div><div class="line">    <span class="keyword">if</span>(x&gt;y) a=y</div><div class="line">    <span class="keyword">return</span> a </div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">min</span></span>(x:<span class="type">Int</span>,y:<span class="type">Int</span>)= <span class="keyword">if</span>(x&gt;y) y <span class="keyword">else</span> x</div></pre></td></tr></table></figure>
+<blockquote>
+<p>while</p>
+</blockquote>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">while</span>(<span class="type">A</span>) <span class="type">B</span></div><div class="line"></div><div class="line">do <span class="type">B</span> <span class="keyword">while</span>(<span class="type">A</span>)</div><div class="line"></div><div class="line">值得注意的是,<span class="keyword">while</span>同do语句不 产生值,为了让循环发挥作用, <span class="keyword">while</span>要不更新<span class="keyword">var</span>,要不执行<span class="type">I</span>/<span class="type">O</span></div></pre></td></tr></table></figure>
+<a id="more"></a>
+<blockquote>
+<p>for</p>
+</blockquote>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(i &lt;- e) <span class="type">E</span>(i)<span class="comment">//发生器(i &lt;- e),函数体E(i)</span></div><div class="line"><span class="comment">//1 to 4        (1=&lt;i&lt;=4);</span></div><div class="line"><span class="comment">//1 until 4     (1=&lt;i&lt;=4-1)(不包含上界)</span></div><div class="line"></div><div class="line"><span class="keyword">for</span>(i &lt;- <span class="number">1</span> to <span class="number">4</span>)</div><div class="line">    println(“<span class="type">No</span>.”+ i)</div><div class="line">    </div><div class="line">在<span class="keyword">for</span>语句中使用<span class="keyword">if</span>语句进行过滤</div><div class="line"><span class="keyword">for</span>(i &lt;- e) <span class="keyword">if</span>(<span class="type">A</span>) <span class="type">E</span>(i)</div><div class="line"></div><div class="line"><span class="keyword">for</span>(i &lt;- <span class="number">1</span> to <span class="number">4</span>)</div><div class="line">    <span class="keyword">if</span>(i%<span class="number">2</span>==<span class="number">0</span>)</div><div class="line">    <span class="keyword">if</span>(i!=<span class="number">2</span>) <span class="comment">//if(i%2==0&amp;&amp;i!=2)</span></div><div class="line">    println(“<span class="type">No</span>.”+ i)</div><div class="line">能把<span class="keyword">if</span>语句写入循环体,而非函数体中,此时要使用“;”间隔 </div><div class="line"><span class="keyword">for</span>(i &lt;- <span class="number">1</span> to <span class="number">4</span>;<span class="keyword">if</span> i%<span class="number">2</span>==<span class="number">0</span>;<span class="keyword">if</span> i!=<span class="number">2</span>) println(“<span class="type">No</span>.”+i)</div><div class="line"></div><div class="line"><span class="keyword">for</span>语句实现嵌套枚举只需要多加一个&lt;-字句</div><div class="line"><span class="keyword">for</span>(i &lt;- 𝑒 )<span class="keyword">for</span>(j &lt;- 𝑒 )<span class="type">E</span>(i,j)</div><div class="line"><span class="keyword">for</span>(i &lt;- 𝑒 ;j &lt;- 𝑒 )<span class="type">E</span>(i,j)</div><div class="line"><span class="keyword">for</span>(i &lt;- 𝑒 ;<span class="keyword">if</span> <span class="type">A</span>;j &lt;- 𝑒 ;<span class="keyword">if</span> <span class="type">B</span>)<span class="type">E</span>(i,j)</div><div class="line">嵌套枚举并非是同时进行的枚举;形如<span class="keyword">for</span>(i &lt;- <span class="number">1</span> to <span class="number">4</span>;j &lt;- <span class="number">1</span> to <span class="number">2</span>),</div><div class="line">其枚举形式是,先 枚举i = <span class="number">1</span>,再完整枚举j = <span class="number">1</span>,j = <span class="number">2</span>;然后是枚举i =<span class="number">2</span>,再完整枚举j = <span class="number">1</span>,j =<span class="number">2</span></div><div class="line"></div><div class="line"><span class="keyword">for</span>语句除了对枚举值进行操作并释放该值外,可以用以赋值,即把每一次枚举的值记 录在集合中.</div><div class="line"><span class="keyword">for</span>(i &lt;- e) <span class="keyword">yield</span> <span class="type">E</span>(i)</div><div class="line">若<span class="type">E</span>(i)由花括号括起,<span class="keyword">yield</span>须在花括号外,即<span class="keyword">for</span>(i &lt;- e) <span class="keyword">yield</span> &#123;<span class="type">E</span>(i)&#125;</div><div class="line"><span class="keyword">val</span> <span class="type">No</span>=<span class="keyword">for</span>(i &lt;- <span class="number">1</span> to <span class="number">4</span>) <span class="keyword">yield</span> i</div><div class="line"><span class="keyword">yield</span>保留字返回的类型跟<span class="keyword">for</span>循环体第一个&lt;-语句的集合类型相同,如非集合时,返回 的是序列</div><div class="line"></div><div class="line"><span class="keyword">for</span>(i &lt;- “<span class="type">HELLO</span>”)<span class="keyword">yield</span> i</div><div class="line"><span class="keyword">for</span>(i &lt;- <span class="number">1</span> to <span class="number">2</span>)<span class="keyword">yield</span> i.toChar</div><div class="line"><span class="keyword">for</span>(i &lt;- “<span class="type">HELLO</span>”;j &lt;- <span class="number">1</span> to <span class="number">2</span>) <span class="keyword">yield</span> (i+j).toChar </div><div class="line"><span class="keyword">for</span>(i &lt;- <span class="number">1</span> to <span class="number">2</span>;j &lt;- “<span class="type">HELLO</span>”) <span class="keyword">yield</span> (i+j).toChar </div><div class="line">分别返回什么结果呢?</div><div class="line"><span class="type">String</span>:<span class="type">HELLO</span></div><div class="line"><span class="type">Vector</span>&lt;?,?&gt;</div><div class="line"><span class="type">String</span>:<span class="type">IJFGMNMNPQ</span></div><div class="line"><span class="type">Vector</span>&lt;<span class="type">I</span>,<span class="type">J</span>,<span class="type">F</span>,<span class="type">G</span>,<span class="type">M</span>,<span class="type">N</span>,<span class="type">M</span>,<span class="type">N</span>,<span class="type">P</span>,<span class="type">Q</span>&gt;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>match</p>
+</blockquote>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">a <span class="keyword">match</span>&#123;</div><div class="line">	<span class="keyword">case</span> e1 =&gt; <span class="type">E1</span></div><div class="line">	<span class="keyword">case</span> e2 =&gt; <span class="type">E2</span></div><div class="line">	... ...</div><div class="line">&#125;</div><div class="line"><span class="comment">//a可以是数组、任意类型等,E可以是对应的值、常量、变量、类型等。</span></div><div class="line"><span class="comment">//val sign = a match&#123;...&#125; match表达式能用以直接赋值</span></div><div class="line"><span class="comment">//匹配是从上而下的</span></div><div class="line"><span class="comment">//匹配语句case后接 _ 代表的是任意,一般在最后的case语句中这么写,即匹配不到上 面的值时,执行</span></div><div class="line">如 a <span class="keyword">match</span> &#123;<span class="keyword">case</span> e1 =&gt;...	<span class="keyword">case</span> e2 =&gt;...	 <span class="keyword">case</span> _ =&gt;....&#125;</div><div class="line"><span class="comment">//匹配语句返回的值有多种类型时,Scala不能执行类型推断,并且只会返回Any类型</span></div><div class="line">如 <span class="keyword">val</span> <span class="keyword">final</span>=a <span class="keyword">match</span> &#123;<span class="keyword">case</span> e1 =&gt; “<span class="type">HI</span>” <span class="keyword">case</span> e2 =&gt; ‘<span class="type">H</span>’ <span class="keyword">case</span> e3 =&gt; <span class="number">123</span> &#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>try catch</p>
+</blockquote>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">* <span class="type">Scala</span>处理异常一般通过<span class="keyword">throw</span>抛出一个异常并中止</div><div class="line">* 要么捕获并处理该异常,要么简单中止之</div><div class="line">* 异常抛出:<span class="keyword">throw</span> <span class="keyword">new</span> <span class="type">IllegalArgumentException</span>  </div><div class="line">* 异常捕获与处理:<span class="keyword">try</span>&#123;函数体&#125; <span class="keyword">catch</span>&#123;<span class="keyword">case</span>...;<span class="keyword">case</span>...&#125; </div><div class="line">* 异常捕获并中止:<span class="keyword">try</span>&#123;函数体&#125; <span class="keyword">finally</span>&#123;<span class="type">A</span>.close()&#125;</div><div class="line">* <span class="keyword">try</span>&#123;函数体&#125; <span class="keyword">catch</span>&#123;<span class="keyword">case</span>...;<span class="keyword">case</span>...&#125; <span class="keyword">finally</span>&#123;<span class="type">A</span>.close()&#125;</div><div class="line">* <span class="keyword">throw</span>、<span class="keyword">try</span>-<span class="keyword">catch</span>-<span class="keyword">finally</span>表达式都能生成值</div><div class="line">* 如:<span class="keyword">throw</span> <span class="keyword">new</span> <span class="type">IllegalArgumentException</span>(“<span class="type">Error</span>!”) </div><div class="line">* <span class="function"><span class="keyword">def</span> <span class="title">f</span></span>():<span class="type">Int</span>=<span class="keyword">try</span>&#123;<span class="number">1</span>&#125; <span class="keyword">finally</span>&#123;<span class="number">2</span>&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>输入、输出</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">输出：</div><div class="line">println(“A”) println(“A”+<span class="number">1</span>)</div><div class="line">输出：</div><div class="line">输入通常使用read函数,如readLine是从控制台读取一行输入,指定类型时为readT ,T是所要指定的类型,如readInt等</div><div class="line">val name=readLine(“Your name :\n”) readLine带一个参数作为提示字符串</div><div class="line">val age=readInt()</div></pre></td></tr></table></figure>
+<blockquote>
+<p>其他语句</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">* return 语句表示返回某个值,但是Scala事实上无须使用return语句</div><div class="line">* 对于函数来说,其默认返回值是最后出现的一个值,不用特别注明。如需要返回的值并非最后出现时,可在函数体后加上该值的标识符使之“出现”</div><div class="line">* 声明函数时使用return语句,必须声明返回值的类型,如def abd():T=&#123;return&#125;</div><div class="line">* break/continue在C++中非常常见的控制结构语句,但在Scala中是不必要的,可以 使用布尔值类型的量通过IF语句进行控制</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/scala/" rel="tag"># scala</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/10/25/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/10/23/IDEA-MAC-快捷键/" rel="prev" title="IDEA MAC 快捷键">
+                IDEA MAC 快捷键 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="夏小天" />
+          <p class="site-author-name" itemprop="name">夏小天</p>
+           
+              <p class="site-description motion-element" itemprop="description">人人都是段子手</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">46</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">夏小天</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "f0af53cafca946098c02c0c8e838b477",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

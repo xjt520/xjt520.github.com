@@ -1,0 +1,701 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="shell," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="keywords" content="shell">
+<meta property="og:type" content="article">
+<meta property="og:title" content="常用shell">
+<meta property="og:url" content="https://zuimeidaima.com/2016/08/08/常用shell/index.html">
+<meta property="og:site_name" content="最美代码">
+<meta property="og:image" content="https://zuimeidaima.com/images/2.jpg">
+<meta property="og:updated_time" content="2017-03-18T02:57:50.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="常用shell">
+<meta name="twitter:image" content="https://zuimeidaima.com/images/2.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://zuimeidaima.com/2016/08/08/常用shell/"/>
+
+
+
+
+
+  <title> 常用shell | 最美代码 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">最美代码</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">好记性不如写博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://zuimeidaima.com/2016/08/08/常用shell/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="夏小天">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="最美代码">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                常用shell
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-08T14:25:34+08:00">
+                2016-08-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2016/08/08/常用shell/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/images/2.jpg"></p>
+<a id="more"></a>
+<h1 id="常用-shell"><a href="#常用-shell" class="headerlink" title="常用 shell"></a>常用 shell</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$# 是传给脚本的参数个数</div><div class="line">$0 是脚本本身的名字</div><div class="line">$1 是传递给该shell脚本的第一个参数</div><div class="line">$2 是传递给该shell脚本的第二个参数</div><div class="line">$@ 是传给脚本的所有参数的列表</div><div class="line">$* 是以一个单字符串显示所有向脚本传递的参数，与位置变量不同，参数可超过9个</div><div class="line">$$ 是脚本运行的当前进程ID号</div><div class="line">$? 是显示最后命令的退出状态，0表示没有错误，其他表示有错误</div><div class="line">$UID 当前为root用户时值为0</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">查看文件</div><div class="line">cat 文件名|head -n 5</div><div class="line">cat 文件名|tail -n 2</div><div class="line">cat 文件名|sed -n &apos;x,yp&apos;</div><div class="line">打印出x,y行，p理解为print</div></pre></td></tr></table></figure>
+<p>unable to create new native thread的错误异常</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">➜  ~ ulimit -u</div><div class="line">709</div><div class="line">[root@iZ2809ocw4jZ ~]# ulimit -a</div><div class="line">core file size          (blocks, -c) 0</div><div class="line">data seg size           (kbytes, -d) unlimited</div><div class="line">scheduling priority             (-e) 0</div><div class="line">file size               (blocks, -f) unlimited</div><div class="line">pending signals                 (-i) 7798</div><div class="line">max locked memory       (kbytes, -l) 64</div><div class="line">max memory size         (kbytes, -m) unlimited</div><div class="line">open files                      (-n) 65535</div><div class="line">pipe size            (512 bytes, -p) 8</div><div class="line">POSIX message queues     (bytes, -q) 819200</div><div class="line">real-time priority              (-r) 0</div><div class="line">stack size              (kbytes, -s) 10240</div><div class="line">cpu time               (seconds, -t) unlimited</div><div class="line">max user processes              (-u) 7798</div><div class="line">virtual memory          (kbytes, -v) unlimited</div><div class="line">file locks                      (-x) unlimited</div><div class="line"></div><div class="line">注： ulimit -u是显示用户最多可开启的程序数目</div><div class="line"></div><div class="line">程序JVM参数设置如下：</div><div class="line">java OOMTest 4000 -Xmx500m -Xss2m -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp</div><div class="line"></div><div class="line">java OOMTest 4000 -Xmx500m -Xss2m -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp</div><div class="line"></div><div class="line">java OOMTest 40000 -Xmx500m -Xss2m -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp</div><div class="line"></div><div class="line">使用ulimit -u 65535命令或者直接修改limits.conf文件，将max user process参数修改为65535。</div><div class="line"></div><div class="line">当max user processers 设置的较小的时候，影响系统线程数目的是max user processers的设置。</div><div class="line">当max user processers设置为65535的时候，影响系统线程数目的是系统的内存。</div><div class="line">对外的异常信息均为：OOM:unable to create native thread。</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">对于Java中的线程，我之前的理解一直是在Java中new新线程的时候是直接使用JVM的内存，可实际情况却不是这样的。在Java中每个线程需要分配线程内存，用来存储自身的线程变量，在JDK 1.4中每个线程是256K的内存，在JDK 1.5中每个线程是1M的内存，JDK 1.6以上版本不太清楚。在Java中每new一个线程，JVM都是向操作系统请求new一个本地线程，此时操作系统会使用剩余的内存空间来为线程分配内存，而不是使用JVM的内存。这样，当操作系统的可用内存越少，则JVM可用创建的新线程也就越少，我们举一个例子如下</div><div class="line"></div><div class="line">如何来分析当前系统配置能够支持多少线程呢？</div><div class="line">总内存 	-Xmx	-Xms	-Xss	剩余内存	线程数</div><div class="line">1024M	  256M	  256M	   1M	    768M	  768</div><div class="line"></div><div class="line">(MaxProcessMemory – JVMMemory – ReservedOsMemory) / (ThreadStackSize) = Number of threads</div><div class="line"></div><div class="line">解释下几个参数的含义：</div><div class="line">MaxProcessMemory：进程最大寻址空间。</div><div class="line">JVMMMEMORY：JVM内存空间（堆+永久区）-Xmx大小 (应该是实际分配大小)。</div><div class="line">ReservedOsMemory：操作系统预留内存。</div><div class="line">ThreadStackSize：-Xss大小。</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">解决：</div><div class="line">1、优化程序，减少没用的log4j日志输出，将log4j日志改为异步+buffer的模式。</div><div class="line">2、单台服务器本身性能有限，通过增加服务器的方式提高扩展性。</div><div class="line">3、将系统的一些限制属性增大，如：ulimit -a。</div><div class="line"></div><div class="line">4、当发现这个错误的时候，第一时间要排查程序是否有bug，是否大量的创建了线程，或者没有正确使用线程池，比如：是否使用了Executors.newCachedThreadPool()方法，该方法能创建Integer最大值个线程，创建到一定程度的时候系统资源耗尽就会报错。</div><div class="line">5、如果发现程序中并没有使用线程却依然报这个错，那么观察一下这个时刻的并发情况如何，要是溢出的这一时刻比其他时候并发量都要大，这时先查看一下系统资源的情况，使用ulimit –a查看max user processes和open files这二个属性的值越大，能创建的线程数也就越大。</div><div class="line">6、如果以上二个属性调大依然报错的话，说明此时受限于系统内存资源了，要是服务器本身内存就比较小的话，建议增加内存。要是服务器内存比较大，就需要通过调整jvm参数来增加线程使用的内存，比如减小-Xss值，这个值越小能创建的线程数也就越多，也可以适当减少-Xmx和-Xms的值，增加堆外内存的容量。</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/shell/" rel="tag"># shell</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/08/Centos6.5使用yum安装mysql/" rel="next" title="Centos6.5使用yum安装mysql">
+                <i class="fa fa-chevron-left"></i> Centos6.5使用yum安装mysql
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/08/多tomcat部署|端口修改/" rel="prev" title="多tomcat部署|端口修改">
+                多tomcat部署|端口修改 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="夏小天" />
+          <p class="site-author-name" itemprop="name">夏小天</p>
+           
+              <p class="site-description motion-element" itemprop="description">人人都是段子手</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">46</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#常用-shell"><span class="nav-number">1.</span> <span class="nav-text">常用 shell</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">夏小天</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "f0af53cafca946098c02c0c8e838b477",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

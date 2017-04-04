@@ -1,0 +1,713 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="接口," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="Welcome use ！">
+<meta name="keywords" content="接口">
+<meta property="og:type" content="article">
+<meta property="og:title" content="非洲旅游App接口说明">
+<meta property="og:url" content="https://zuimeidaima.com/2016/05/27/非洲旅游App接口说明/index.html">
+<meta property="og:site_name" content="最美代码">
+<meta property="og:description" content="Welcome use ！">
+<meta property="og:updated_time" content="2016-07-03T06:15:17.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="非洲旅游App接口说明">
+<meta name="twitter:description" content="Welcome use ！">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://zuimeidaima.com/2016/05/27/非洲旅游App接口说明/"/>
+
+
+
+
+
+  <title> 非洲旅游App接口说明 | 最美代码 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">最美代码</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">好记性不如写博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://zuimeidaima.com/2016/05/27/非洲旅游App接口说明/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="夏小天">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="最美代码">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                非洲旅游App接口说明
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-05-27T14:57:25+08:00">
+                2016-05-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2016/05/27/非洲旅游App接口说明/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Welcome use ！</p>
+<a id="more"></a>
+<h4 id="ip"><a href="#ip" class="headerlink" title="ip"></a>ip</h4><p><a href="http://readshe.com/fast" target="_blank" rel="external">http://readshe.com/fast</a></p>
+<h4 id="登陆-Post"><a href="#登陆-Post" class="headerlink" title="登陆(Post)"></a>登陆(Post)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">url:/api/doLogin</div><div class="line">params:</div><div class="line">	loginName //必须</div><div class="line">	password  //必须</div><div class="line">result:</div></pre></td></tr></table></figure>
+<h4 id="动物、植物、鸟类展示列表-Post"><a href="#动物、植物、鸟类展示列表-Post" class="headerlink" title="动物、植物、鸟类展示列表(Post)"></a>动物、植物、鸟类展示列表(Post)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">url:/api/objectsList</div><div class="line">params:</div><div class="line">	types //必须 &quot;animal&quot; or &quot;animal,bird&quot; or &quot;animal,bird,plant&quot;</div><div class="line">	name  //cnName or enName</div><div class="line">	orderBy //&quot;rareLeavel desc&quot; or &quot;rareLeavel asc&quot; 稀有程度排序</div><div class="line">	page	// 1 or 2 or 3 从1开始</div><div class="line">	rows	//10</div><div class="line">result:</div></pre></td></tr></table></figure>
+<h4 id="动物、植物、鸟类详情-Post"><a href="#动物、植物、鸟类详情-Post" class="headerlink" title="动物、植物、鸟类详情(Post)"></a>动物、植物、鸟类详情(Post)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">url:/api/objectsDetail</div><div class="line">params:</div><div class="line">	id //必须</div><div class="line">result:</div></pre></td></tr></table></figure>
+<h4 id="国家列表-Post"><a href="#国家列表-Post" class="headerlink" title="国家列表(Post)"></a>国家列表(Post)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">url:/api/countryList</div><div class="line">params:</div><div class="line">	page //必须  1 or 2 or 3 从1开始</div><div class="line">	rows //必须  10</div><div class="line">	name_string_like // &quot;肯尼亚Kenya&quot;</div><div class="line">result:</div></pre></td></tr></table></figure>
+<h4 id="景点列表-Post"><a href="#景点列表-Post" class="headerlink" title="景点列表(Post)"></a>景点列表(Post)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">url:/api/placeList</div><div class="line">params:</div><div class="line">	page //必须  1 or 2 or 3 从1开始</div><div class="line">	rows //必须  10</div><div class="line">	cnName-enName_string_like // &quot;内罗毕&quot;</div><div class="line">result:</div></pre></td></tr></table></figure>
+<h4 id="故事列表-Post"><a href="#故事列表-Post" class="headerlink" title="故事列表(Post)"></a>故事列表(Post)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">url:/api/storyList</div><div class="line">params:</div><div class="line">	page //必须  1 or 2 or 3 从1开始</div><div class="line">	rows //必须  10</div><div class="line">	name_string_like // &quot;绿带运动&quot;</div><div class="line">result:</div></pre></td></tr></table></figure>
+<h4 id="酒店列表-Post"><a href="#酒店列表-Post" class="headerlink" title="酒店列表(Post)"></a>酒店列表(Post)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">url:/api/hotelList</div><div class="line">params:</div><div class="line">	page //必须  1 or 2 or 3 从1开始</div><div class="line">	rows //必须  10</div><div class="line">	cnName-enName_string_like // &quot;东方钻石星酒店&quot;</div><div class="line">result:</div></pre></td></tr></table></figure>
+<h4 id="行程列表"><a href="#行程列表" class="headerlink" title="行程列表"></a>行程列表</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">url:/api/planList</div><div class="line">params:null</div><div class="line">result:</div></pre></td></tr></table></figure>
+<h4 id="我的行程"><a href="#我的行程" class="headerlink" title="我的行程"></a>我的行程</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">url:/api/myPlan</div><div class="line">params:</div><div class="line">	planId //必须，这个planId是用户登录之后从用户信息里面取出</div><div class="line">result:</div></pre></td></tr></table></figure>
+<h4 id="收藏"><a href="#收藏" class="headerlink" title="收藏"></a>收藏</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">url:/api/collect</div><div class="line">params:</div><div class="line">	name //必须|收藏标题，比如收藏的某个景点名称</div><div class="line">	userId //必须</div><div class="line">	tableName //必须|&quot;objects&quot;,&quot;place&quot;,&quot;country&quot;,&quot;story&quot;,&quot;hotel&quot;</div><div class="line">	tableId //必须 | 比如收藏的某个景点的id</div><div class="line">result:</div></pre></td></tr></table></figure>
+<h4 id="收藏列表"><a href="#收藏列表" class="headerlink" title="收藏列表"></a>收藏列表</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">url:/api/collectList</div><div class="line">params:</div><div class="line">	page //必须  1 or 2 or 3 从1开始</div><div class="line">	rows //必须  10</div><div class="line">	userId_long_eq //必须 |用户ID</div><div class="line">	name_string_like //&quot;东方钻石星酒店&quot;</div><div class="line">result:</div></pre></td></tr></table></figure>
+<h4 id="分享"><a href="#分享" class="headerlink" title="分享"></a>分享</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">url:/api/share</div><div class="line">params:</div><div class="line">	name //必须|分享标题，比如分享的某个景点名称</div><div class="line">	userId //必须</div><div class="line">	tableName //必须|&quot;objects&quot;,&quot;place&quot;,&quot;country&quot;,&quot;story&quot;,&quot;hotel&quot;</div><div class="line">	tableId //必须 | 比如分享的某个景点的id</div><div class="line">result:</div></pre></td></tr></table></figure>
+<h4 id="分享列表"><a href="#分享列表" class="headerlink" title="分享列表"></a>分享列表</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">url:/api/planList</div><div class="line">params:</div><div class="line">	page //必须  1 or 2 or 3 从1开始</div><div class="line">	rows //必须  10</div><div class="line">	userId_long_eq //必须 |用户ID</div><div class="line">	name_string_like //&quot;东方钻石星酒店&quot;</div><div class="line">result:</div></pre></td></tr></table></figure>
+<h4 id="全文搜索"><a href="#全文搜索" class="headerlink" title="全文搜索"></a>全文搜索</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">url:/api/search</div><div class="line">params:</div><div class="line">	keyWord //必须 | 搜索5张表的数据 (&quot;objects&quot;,&quot;place&quot;,&quot;country&quot;,&quot;story&quot;,&quot;hotel&quot;)</div><div class="line">result:如下结构</div></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;<span class="attr">"code"</span>:<span class="number">200</span>,<span class="attr">"msg"</span>:<span class="string">"成功"</span>,<span class="attr">"data"</span>:&#123;<span class="attr">"story"</span>:[],<span class="attr">"hotel"</span>:[],<span class="attr">"place"</span>:[],<span class="attr">"objects"</span>:[],<span class="attr">"country"</span>:[]&#125;&#125;</div></pre></td></tr></table></figure>
+<h4 id="详情-通用"><a href="#详情-通用" class="headerlink" title="详情|通用"></a>详情|通用</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">url:/api/view</div><div class="line">params:</div><div class="line">	tableName //必须 | 支持5张表 (&quot;objects&quot;,&quot;place&quot;,&quot;country&quot;,&quot;story&quot;,&quot;hotel&quot;)</div><div class="line">	tableId //必须</div><div class="line">result:如下结构</div></pre></td></tr></table></figure>
+<h4 id="返回码说明"><a href="#返回码说明" class="headerlink" title="返回码说明"></a>返回码说明</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> success = <span class="number">200</span>;<span class="comment">//成功</span></div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> exception = <span class="number">500</span>;<span class="comment">//服务器出错</span></div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> error_loginNamePwd = <span class="number">400</span>;<span class="comment">//用户名密码错误</span></div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> error_nullParams = <span class="number">401</span>;<span class="comment">//有null参数</span></div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> error_tableName = <span class="number">402</span>;<span class="comment">//tableName参数错误</span></div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String msg_success = <span class="string">"成功"</span>;</div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String msg_exception = <span class="string">"服务器出错"</span>;</div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String msg_error_loginNamePwd = <span class="string">"用户名密码错误"</span>;</div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String msg_error_nullParams = <span class="string">"有null或者\"\"参数"</span>;</div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String msg_error_tableName = <span class="string">"tableName参数错误"</span>;</div></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/接口/" rel="tag"># 接口</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/27/新闻后台接口/" rel="next" title="新闻后台接口">
+                <i class="fa fa-chevron-left"></i> 新闻后台接口
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/26/tomcat7-redis-存储session/" rel="prev" title="集群部署Session共享Redis解决方案">
+                集群部署Session共享Redis解决方案 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="夏小天" />
+          <p class="site-author-name" itemprop="name">夏小天</p>
+           
+              <p class="site-description motion-element" itemprop="description">人人都是段子手</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">46</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#ip"><span class="nav-number">1.</span> <span class="nav-text">ip</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#登陆-Post"><span class="nav-number">2.</span> <span class="nav-text">登陆(Post)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#动物、植物、鸟类展示列表-Post"><span class="nav-number">3.</span> <span class="nav-text">动物、植物、鸟类展示列表(Post)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#动物、植物、鸟类详情-Post"><span class="nav-number">4.</span> <span class="nav-text">动物、植物、鸟类详情(Post)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#国家列表-Post"><span class="nav-number">5.</span> <span class="nav-text">国家列表(Post)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#景点列表-Post"><span class="nav-number">6.</span> <span class="nav-text">景点列表(Post)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#故事列表-Post"><span class="nav-number">7.</span> <span class="nav-text">故事列表(Post)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#酒店列表-Post"><span class="nav-number">8.</span> <span class="nav-text">酒店列表(Post)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#行程列表"><span class="nav-number">9.</span> <span class="nav-text">行程列表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#我的行程"><span class="nav-number">10.</span> <span class="nav-text">我的行程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#收藏"><span class="nav-number">11.</span> <span class="nav-text">收藏</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#收藏列表"><span class="nav-number">12.</span> <span class="nav-text">收藏列表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分享"><span class="nav-number">13.</span> <span class="nav-text">分享</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分享列表"><span class="nav-number">14.</span> <span class="nav-text">分享列表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#全文搜索"><span class="nav-number">15.</span> <span class="nav-text">全文搜索</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#详情-通用"><span class="nav-number">16.</span> <span class="nav-text">详情|通用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#返回码说明"><span class="nav-number">17.</span> <span class="nav-text">返回码说明</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">夏小天</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "f0af53cafca946098c02c0c8e838b477",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

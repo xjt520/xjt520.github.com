@@ -1,0 +1,733 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="rsync," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="keywords" content="rsync">
+<meta property="og:type" content="article">
+<meta property="og:title" content="rsync使用">
+<meta property="og:url" content="https://zuimeidaima.com/2016/08/08/rsync使用/index.html">
+<meta property="og:site_name" content="最美代码">
+<meta property="og:image" content="https://zuimeidaima.com/images/2.jpg">
+<meta property="og:updated_time" content="2017-03-18T03:00:42.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="rsync使用">
+<meta name="twitter:image" content="https://zuimeidaima.com/images/2.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://zuimeidaima.com/2016/08/08/rsync使用/"/>
+
+
+
+
+
+  <title> rsync使用 | 最美代码 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">最美代码</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">好记性不如写博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://zuimeidaima.com/2016/08/08/rsync使用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="夏小天">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="最美代码">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                rsync使用
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-08T14:25:34+08:00">
+                2016-08-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2016/08/08/rsync使用/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/images/2.jpg"></p>
+<a id="more"></a>
+<h1 id="rsync"><a href="#rsync" class="headerlink" title="rsync"></a>rsync</h1><p>语法 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ rsync options source destination</div></pre></td></tr></table></figure>
+<h3 id="Example-1-Synchronize-Two-Directories-in-a-Local-Server-不同步时间戳"><a href="#Example-1-Synchronize-Two-Directories-in-a-Local-Server-不同步时间戳" class="headerlink" title="Example 1. Synchronize Two Directories in a Local Server |不同步时间戳"></a>Example 1. Synchronize Two Directories in a Local Server |不同步时间戳</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ rsync -zvr /var/opt/installation/inventory/ /root/temp</div><div class="line">building file list ... done</div><div class="line">sva.xml</div><div class="line">svB.xml</div><div class="line">.</div><div class="line">sent 26385 bytes  received 1098 bytes  54966.00 bytes/sec</div><div class="line">total size is 44867  speedup is 1.63</div><div class="line">$</div></pre></td></tr></table></figure>
+<pre><code>-z is to enable compression
+-v verbose
+-r indicates recursive
+</code></pre><h3 id="Example-2-Preserve-timestamps-during-Sync-using-rsync-a-同步时间戳"><a href="#Example-2-Preserve-timestamps-during-Sync-using-rsync-a-同步时间戳" class="headerlink" title="Example 2. Preserve timestamps during Sync using rsync -a |同步时间戳"></a>Example 2. Preserve timestamps during Sync using rsync -a |同步时间戳</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$ rsync -azv /var/opt/installation/inventory/ /root/temp/</div><div class="line">building file list ... done</div><div class="line">./</div><div class="line">sva.xml</div><div class="line">svB.xml</div><div class="line">.</div><div class="line">sent 26499 bytes  received 1104 bytes  55206.00 bytes/sec</div><div class="line">total size is 44867  speedup is 1.63</div><div class="line">$</div></pre></td></tr></table></figure>
+<h3 id="Example-3-Synchronize-Only-One-File"><a href="#Example-3-Synchronize-Only-One-File" class="headerlink" title="Example 3. Synchronize Only One File"></a>Example 3. Synchronize Only One File</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ rsync -v /var/lib/rpm/Pubkeys /root/temp/</div><div class="line">Pubkeys</div><div class="line"></div><div class="line">sent 42 bytes  received 12380 bytes  3549.14 bytes/sec</div><div class="line">total size is 12288  speedup is 0.99</div></pre></td></tr></table></figure>
+<h3 id="Example-4-Synchronize-Files-From-Local-to-Remote"><a href="#Example-4-Synchronize-Files-From-Local-to-Remote" class="headerlink" title="Example 4. Synchronize Files From Local to Remote"></a>Example 4. Synchronize Files From Local to Remote</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$ rsync -avz /root/temp/ thegeekstuff@192.168.200.10:/home/thegeekstuff/temp/</div><div class="line">Password:</div><div class="line">building file list ... done</div><div class="line">./</div><div class="line">rpm/</div><div class="line">rpm/Basenames</div><div class="line">rpm/Conflictname</div><div class="line"></div><div class="line">sent 15810261 bytes  received 412 bytes  2432411.23 bytes/sec</div><div class="line">total size is 45305958  speedup is 2.87</div></pre></td></tr></table></figure>
+<h3 id="Example-5-Synchronize-Files-From-Remote-to-Local"><a href="#Example-5-Synchronize-Files-From-Remote-to-Local" class="headerlink" title="Example 5. Synchronize Files From Remote to Local"></a>Example 5. Synchronize Files From Remote to Local</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ rsync -avz thegeekstuff@192.168.200.10:/var/lib/rpm /root/temp</div><div class="line">Password:</div><div class="line">receiving file list ... done</div><div class="line">rpm/</div><div class="line">rpm/Basenames</div><div class="line">.</div><div class="line">sent 406 bytes  received 15810230 bytes  2432405.54 bytes/sec</div><div class="line">total size is 45305958  speedup is 2.87</div></pre></td></tr></table></figure>
+<h3 id="Example-6-Remote-shell-for-Synchronization"><a href="#Example-6-Remote-shell-for-Synchronization" class="headerlink" title="Example 6. Remote shell for Synchronization"></a>Example 6. Remote shell for Synchronization</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ rsync -avz -e ssh thegeekstuff@192.168.200.10:/var/lib/rpm /root/temp</div><div class="line">Password:</div><div class="line">receiving file list ... done</div><div class="line">rpm/</div><div class="line">rpm/Basenames</div><div class="line"></div><div class="line">sent 406 bytes  received 15810230 bytes  2432405.54 bytes/sec</div><div class="line">total size is 45305958  speedup is 2.87</div></pre></td></tr></table></figure>
+<h3 id="Example-7-Do-Not-Overwrite-the-Modified-Files-at-the-Destination"><a href="#Example-7-Do-Not-Overwrite-the-Modified-Files-at-the-Destination" class="headerlink" title="Example 7. Do Not Overwrite the Modified Files at the Destination"></a>Example 7. Do Not Overwrite the Modified Files at the Destination</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">$ ls -l /root/temp/Basenames</div><div class="line">total 39088</div><div class="line">-rwxr-xr-x 1 root root        4096 Sep  2 11:35 Basenames</div><div class="line"></div><div class="line">$ rsync -avzu thegeekstuff@192.168.200.10:/var/lib/rpm /root/temp</div><div class="line">Password:</div><div class="line">receiving file list ... done</div><div class="line">rpm/</div><div class="line"></div><div class="line">sent 122 bytes  received 505 bytes  114.00 bytes/sec</div><div class="line">total size is 45305958  speedup is 72258.31</div><div class="line"></div><div class="line">$ ls -lrt</div><div class="line">total 39088</div><div class="line">-rwxr-xr-x 1 root root        4096 Sep  2 11:35 Basenames</div></pre></td></tr></table></figure>
+<h3 id="Example-8-Synchronize-only-the-Directory-Tree-Structure-not-the-files"><a href="#Example-8-Synchronize-only-the-Directory-Tree-Structure-not-the-files" class="headerlink" title="Example 8. Synchronize only the Directory Tree Structure (not the files)"></a>Example 8. Synchronize only the Directory Tree Structure (not the files)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$ rsync -v -d thegeekstuff@192.168.200.10:/var/lib/ .</div><div class="line">Password:</div><div class="line">receiving file list ... done</div><div class="line">logrotate.status</div><div class="line">CAM/</div><div class="line">YaST2/</div><div class="line">acpi/</div><div class="line"></div><div class="line">sent 240 bytes  received 1830 bytes  318.46 bytes/sec</div><div class="line">total size is 956  speedup is 0.46</div></pre></td></tr></table></figure>
+<h3 id="Example-9-View-the-rsync-Progress-during-Transfer"><a href="#Example-9-View-the-rsync-Progress-during-Transfer" class="headerlink" title="Example 9. View the rsync Progress during Transfer"></a>Example 9. View the rsync Progress during Transfer</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">$ rsync -avz --progress thegeekstuff@192.168.200.10:/var/lib/rpm/ /root/temp/</div><div class="line">Password:</div><div class="line">receiving file list ...</div><div class="line">19 files to consider</div><div class="line">./</div><div class="line">Basenames</div><div class="line">     5357568 100%   14.98MB/s    0:00:00 (xfer#1, to-check=17/19)</div><div class="line">Conflictname</div><div class="line">       12288 100%   35.09kB/s    0:00:00 (xfer#2, to-check=16/19)</div><div class="line">.</div><div class="line">.</div><div class="line">.</div><div class="line">sent 406 bytes  received 15810211 bytes  2108082.27 bytes/sec</div><div class="line">total size is 45305958  speedup is 2.87</div></pre></td></tr></table></figure>
+<h3 id="Example-10-Delete-the-Files-Created-at-the-Target"><a href="#Example-10-Delete-the-Files-Created-at-the-Target" class="headerlink" title="Example 10. Delete the Files Created at the Target"></a>Example 10. Delete the Files Created at the Target</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"># Source and target are in sync. Now creating new file at the target.</div><div class="line">$ &gt; new-file.txt</div><div class="line"></div><div class="line">$ rsync -avz --delete thegeekstuff@192.168.200.10:/var/lib/rpm/ .</div><div class="line">Password:</div><div class="line">receiving file list ... done</div><div class="line">deleting new-file.txt</div><div class="line">./</div><div class="line"></div><div class="line">sent 26 bytes  received 390 bytes  48.94 bytes/sec</div><div class="line">total size is 45305958  speedup is 108908.55</div></pre></td></tr></table></figure>
+<h3 id="Example-11-Do-not-Create-New-File-at-the-Target"><a href="#Example-11-Do-not-Create-New-File-at-the-Target" class="headerlink" title="Example 11. Do not Create New File at the Target"></a>Example 11. Do not Create New File at the Target</h3><p>If you like, you can update (Sync) only the existing files at the target. In case source has new files, which is not there at the target, you can avoid creating these new files at the target. If you want this feature, use –existing option with rsync command.<br>First, add a new-file.txt at the source.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[/var/lib/rpm ]$ &gt; new-file.txt</div></pre></td></tr></table></figure>
+<p>Next, execute the rsync from the target.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ rsync -avz --existing root@192.168.1.2:/var/lib/rpm/ .</div><div class="line">root@192.168.1.2&apos;s password:</div><div class="line">receiving file list ... done</div><div class="line">./</div><div class="line"></div><div class="line">sent 26 bytes  received 419 bytes  46.84 bytes/sec</div><div class="line">total size is 88551424  speedup is 198991.96</div></pre></td></tr></table></figure>
+<p>If you see the above output, it didn’t receive the new file new-file.txt</p>
+<h3 id="Example-12-View-the-Changes-Between-Source-and-Destination"><a href="#Example-12-View-the-Changes-Between-Source-and-Destination" class="headerlink" title="Example 12. View the Changes Between Source and Destination"></a>Example 12. View the Changes Between Source and Destination</h3><p>At the source:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ ls -l /var/lib/rpm</div><div class="line">-rw-r--r-- 1 root root  5357568 2010-06-24 08:57 Basenames</div><div class="line">-rw-r--r-- 1 root root    12288 2008-05-28 22:03 Conflictname</div><div class="line">-rw-r--r-- 1 root root  1179648 2010-06-24 08:57 Dirnames</div></pre></td></tr></table></figure>
+<p>At the destination:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ ls -l /root/temp</div><div class="line">-rw-r--r-- 1 root root    12288 May 28  2008 Conflictname</div><div class="line">-rw-r--r-- 1 bin  bin   1179648 Jun 24 05:27 Dirnames</div><div class="line">-rw-r--r-- 1 root root        0 Sep  3 06:39 Basenames</div></pre></td></tr></table></figure>
+<p>In the above example, between the source and destination, there are two differences. First, owner and group of the file Dirname differs. Next, size differs for the file Basenames.</p>
+<p>Now let us see how rsync displays this difference. -i option displays the item changes.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ rsync -avzi thegeekstuff@192.168.200.10:/var/lib/rpm/ /root/temp/</div><div class="line">Password:</div><div class="line">receiving file list ... done</div><div class="line">&gt;f.st.... Basenames</div><div class="line">.f....og. Dirnames</div><div class="line"></div><div class="line">sent 48 bytes  received 2182544 bytes  291012.27 bytes/sec</div><div class="line">total size is 45305958  speedup is 20.76</div></pre></td></tr></table></figure>
+<p>In the output it displays some 9 letters in front of the file name or directory name indicating the changes.</p>
+<p>In our example, the letters in front of the Basenames (and Dirnames) says the following:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&gt; specifies that a file is being transferred to the local host.</div><div class="line">f represents that it is a file.</div><div class="line">s represents size changes are there.</div><div class="line">t represents timestamp changes are there.</div><div class="line">o owner changed</div><div class="line">g group changed.</div></pre></td></tr></table></figure>
+<h3 id="Example-13-Include-and-Exclude-Pattern-during-File-Transfer"><a href="#Example-13-Include-and-Exclude-Pattern-during-File-Transfer" class="headerlink" title="Example 13. Include and Exclude Pattern during File Transfer"></a>Example 13. Include and Exclude Pattern during File Transfer</h3><p>rsync allows you to give the pattern you want to include and exclude files or directories while doing synchronization.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">$ rsync -avz --include &apos;P*&apos; --exclude &apos;*&apos; thegeekstuff@192.168.200.10:/var/lib/rpm/ /root/temp/</div><div class="line">Password:</div><div class="line">receiving file list ... done</div><div class="line">./</div><div class="line">Packages</div><div class="line">Providename</div><div class="line">Provideversion</div><div class="line">Pubkeys</div><div class="line"></div><div class="line">sent 129 bytes  received 10286798 bytes  2285983.78 bytes/sec</div><div class="line">total size is 32768000  speedup is 3.19</div></pre></td></tr></table></figure>
+<h3 id="Example-14-Do-Not-Transfer-Large-Files"><a href="#Example-14-Do-Not-Transfer-Large-Files" class="headerlink" title="Example 14. Do Not Transfer Large Files"></a>Example 14. Do Not Transfer Large Files</h3><p>You can tell rsync not to transfer files that are greater than a specific size using rsync –max-size option.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">$ rsync -avz --max-size=&apos;100K&apos; thegeekstuff@192.168.200.10:/var/lib/rpm/ /root/temp/</div><div class="line">Password:</div><div class="line">receiving file list ... done</div><div class="line">./</div><div class="line">Conflictname</div><div class="line">Group</div><div class="line">Installtid</div><div class="line">Name</div><div class="line">Sha1header</div><div class="line">Sigmd5</div><div class="line">Triggername</div><div class="line"></div><div class="line">sent 252 bytes  received 123081 bytes  18974.31 bytes/sec</div><div class="line">total size is 45305958  speedup is 367.35</div></pre></td></tr></table></figure>
+<p>max-size=100K makes rsync to transfer only the files that are less than or equal to 100K. You can indicate M for megabytes and G for gigabytes.</p>
+<h3 id="Example-15-Transfer-the-Whole-File"><a href="#Example-15-Transfer-the-Whole-File" class="headerlink" title="Example 15. Transfer the Whole File"></a>Example 15. Transfer the Whole File</h3><p>One of the main feature of rsync is that it transfers only the changed block to the destination, instead of sending the whole file.</p>
+<p>If network bandwidth is not an issue for you (but CPU is), you can transfer the whole file, using rsync -W option. This will speed-up the rsync process, as it doesn’t have to perform the checksum at the source and destination.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">#  rsync -avzW  thegeekstuff@192.168.200.10:/var/lib/rpm/ /root/temp</div><div class="line">Password:</div><div class="line">receiving file list ... done</div><div class="line">./</div><div class="line">Basenames</div><div class="line">Conflictname</div><div class="line">Dirnames</div><div class="line">Filemd5s</div><div class="line">Group</div><div class="line">Installtid</div><div class="line">Name</div><div class="line"></div><div class="line">sent 406 bytes  received 15810211 bytes  2874657.64 bytes/sec</div><div class="line">total size is 45305958  speedup is 2.87</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/rsync/" rel="tag"># rsync</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/08/jdk8|tomcat8安装脚本/" rel="next" title="jdk8|tomcat8安装脚本">
+                <i class="fa fa-chevron-left"></i> jdk8|tomcat8安装脚本
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/08/卸载jdk/" rel="prev" title="卸载jdk">
+                卸载jdk <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="夏小天" />
+          <p class="site-author-name" itemprop="name">夏小天</p>
+           
+              <p class="site-description motion-element" itemprop="description">人人都是段子手</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">46</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#rsync"><span class="nav-number">1.</span> <span class="nav-text">rsync</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-1-Synchronize-Two-Directories-in-a-Local-Server-不同步时间戳"><span class="nav-number">1.0.1.</span> <span class="nav-text">Example 1. Synchronize Two Directories in a Local Server |不同步时间戳</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-2-Preserve-timestamps-during-Sync-using-rsync-a-同步时间戳"><span class="nav-number">1.0.2.</span> <span class="nav-text">Example 2. Preserve timestamps during Sync using rsync -a |同步时间戳</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-3-Synchronize-Only-One-File"><span class="nav-number">1.0.3.</span> <span class="nav-text">Example 3. Synchronize Only One File</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-4-Synchronize-Files-From-Local-to-Remote"><span class="nav-number">1.0.4.</span> <span class="nav-text">Example 4. Synchronize Files From Local to Remote</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-5-Synchronize-Files-From-Remote-to-Local"><span class="nav-number">1.0.5.</span> <span class="nav-text">Example 5. Synchronize Files From Remote to Local</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-6-Remote-shell-for-Synchronization"><span class="nav-number">1.0.6.</span> <span class="nav-text">Example 6. Remote shell for Synchronization</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-7-Do-Not-Overwrite-the-Modified-Files-at-the-Destination"><span class="nav-number">1.0.7.</span> <span class="nav-text">Example 7. Do Not Overwrite the Modified Files at the Destination</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-8-Synchronize-only-the-Directory-Tree-Structure-not-the-files"><span class="nav-number">1.0.8.</span> <span class="nav-text">Example 8. Synchronize only the Directory Tree Structure (not the files)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-9-View-the-rsync-Progress-during-Transfer"><span class="nav-number">1.0.9.</span> <span class="nav-text">Example 9. View the rsync Progress during Transfer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-10-Delete-the-Files-Created-at-the-Target"><span class="nav-number">1.0.10.</span> <span class="nav-text">Example 10. Delete the Files Created at the Target</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-11-Do-not-Create-New-File-at-the-Target"><span class="nav-number">1.0.11.</span> <span class="nav-text">Example 11. Do not Create New File at the Target</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-12-View-the-Changes-Between-Source-and-Destination"><span class="nav-number">1.0.12.</span> <span class="nav-text">Example 12. View the Changes Between Source and Destination</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-13-Include-and-Exclude-Pattern-during-File-Transfer"><span class="nav-number">1.0.13.</span> <span class="nav-text">Example 13. Include and Exclude Pattern during File Transfer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-14-Do-Not-Transfer-Large-Files"><span class="nav-number">1.0.14.</span> <span class="nav-text">Example 14. Do Not Transfer Large Files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-15-Transfer-the-Whole-File"><span class="nav-number">1.0.15.</span> <span class="nav-text">Example 15. Transfer the Whole File</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">夏小天</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "f0af53cafca946098c02c0c8e838b477",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

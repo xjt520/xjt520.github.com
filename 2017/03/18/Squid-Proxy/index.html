@@ -1,0 +1,715 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Squid,爬虫,代理,shell," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="keywords" content="Squid,爬虫,代理,shell">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Squid搭建代理服务器">
+<meta property="og:url" content="https://zuimeidaima.com/2017/03/18/Squid-Proxy/index.html">
+<meta property="og:site_name" content="最美代码">
+<meta property="og:image" content="https://zuimeidaima.com/images/2.jpg">
+<meta property="og:updated_time" content="2017-03-18T02:45:23.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Squid搭建代理服务器">
+<meta name="twitter:image" content="https://zuimeidaima.com/images/2.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://zuimeidaima.com/2017/03/18/Squid-Proxy/"/>
+
+
+
+
+
+  <title> Squid搭建代理服务器 | 最美代码 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">最美代码</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">好记性不如写博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://zuimeidaima.com/2017/03/18/Squid-Proxy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="夏小天">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="最美代码">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Squid搭建代理服务器
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-18T10:25:00+08:00">
+                2017-03-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2017/03/18/Squid-Proxy/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/images/2.jpg"></p>
+<a id="more"></a>
+<h2 id="Squid搭建代理服务器"><a href="#Squid搭建代理服务器" class="headerlink" title="Squid搭建代理服务器"></a>Squid搭建代理服务器</h2><p>使用爬虫经常遭到IP被封，网上免费代理经常也不可用，个人写爬虫购买代理没必要，如果有自己的阿里云服务器，则可以使用Squid搭建代理服务器，自己搭建的代理IP稳定可靠，以下将搭建过程记录如下。</p>
+<p>安装环境为Centos6.5</p>
+<h4 id="first-install-squid"><a href="#first-install-squid" class="headerlink" title="first install squid"></a>first install squid</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo yum install squid</div></pre></td></tr></table></figure>
+<h4 id="then-install-httpd-tools"><a href="#then-install-httpd-tools" class="headerlink" title="then install httpd-tools"></a>then install httpd-tools</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo yum install httpd-tools</div></pre></td></tr></table></figure>
+<h4 id="then-create-a-file-to-store-passwords-in-it-and-change-the-ownership-of-it-so-Squid-can-access"><a href="#then-create-a-file-to-store-passwords-in-it-and-change-the-ownership-of-it-so-Squid-can-access" class="headerlink" title="then create a file to store passwords in it and change the ownership of it so Squid can access"></a>then create a file to store passwords in it and change the ownership of it so Squid can access</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo touch /etc/squid/passwd</div><div class="line">$ sudo chown squid /etc/squid/passwd</div></pre></td></tr></table></figure>
+<h4 id="then-set-password-for-jack"><a href="#then-set-password-for-jack" class="headerlink" title="then set password for jack"></a>then set password for jack</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ sudo htpasswd -d /etc/squid/passwd jack</div><div class="line">  New password:</div><div class="line">  Re-type new password:</div><div class="line">  Adding password for user jack</div></pre></td></tr></table></figure>
+<h4 id="test-password-is-ok"><a href="#test-password-is-ok" class="headerlink" title="test password is ok"></a>test password is ok</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ /usr/lib64/squid/ncsa_auth /etc/squid/passwd</div><div class="line">jack yourpassword</div><div class="line">OK</div></pre></td></tr></table></figure>
+<h4 id="then-in-etc-squid-squid-conf-and-add-following-lines-to-the-top-of-file-and-save-it"><a href="#then-in-etc-squid-squid-conf-and-add-following-lines-to-the-top-of-file-and-save-it" class="headerlink" title="then in /etc/squid/squid.conf and add following lines to the top of file. and save it"></a>then in /etc/squid/squid.conf and add following lines to the top of file. and save it</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">auth_param basic program /usr/lib64/squid/ncsa_auth /etc/squid/passwd</div><div class="line">auth_param basic children 5</div><div class="line">auth_param basic realm Squid proxy-caching web server</div><div class="line">auth_param basic credentialsttl 2 hours</div><div class="line">auth_param basic casesensitive off</div><div class="line"></div><div class="line">acl ncsa_users proxy_auth REQUIRED</div><div class="line">http_access allow ncsa_users</div></pre></td></tr></table></figure>
+<h4 id="last-restart-squid"><a href="#last-restart-squid" class="headerlink" title="last restart squid"></a>last restart squid</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo service squid restart</div><div class="line">$ chkconfig squid on</div></pre></td></tr></table></figure>
+<h4 id="Remember-to-restart-the-Squid-service-after-deleting-the-user-line-in-the-file"><a href="#Remember-to-restart-the-Squid-service-after-deleting-the-user-line-in-the-file" class="headerlink" title="Remember to restart the Squid service after deleting the user line in the file"></a>Remember to restart the Squid service after deleting the user line in the file</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">jack:ehHDxD10B5KAu</div></pre></td></tr></table></figure>
+<h4 id="Anonymizing-Traffic"><a href="#Anonymizing-Traffic" class="headerlink" title="Anonymizing Traffic"></a>Anonymizing Traffic</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">forwarded_for off</div><div class="line">request_header_access Allow allow all</div><div class="line">request_header_access Authorization allow all</div><div class="line">request_header_access WWW-Authenticate allow all</div><div class="line">request_header_access Proxy-Authorization allow all</div><div class="line">request_header_access Proxy-Authenticate allow all</div><div class="line">request_header_access Cache-Control allow all</div><div class="line">request_header_access Content-Encoding allow all</div><div class="line">request_header_access Content-Length allow all</div><div class="line">request_header_access Content-Type allow all</div><div class="line">request_header_access Date allow all</div><div class="line">request_header_access Expires allow all</div><div class="line">request_header_access Host allow all</div><div class="line">request_header_access If-Modified-Since allow all</div><div class="line">request_header_access Last-Modified allow all</div><div class="line">request_header_access Location allow all</div><div class="line">request_header_access Pragma allow all</div><div class="line">request_header_access Accept allow all</div><div class="line">request_header_access Accept-Charset allow all</div><div class="line">request_header_access Accept-Encoding allow all</div><div class="line">request_header_access Accept-Language allow all</div><div class="line">request_header_access Content-Language allow all</div><div class="line">request_header_access Mime-Version allow all</div><div class="line">request_header_access Retry-After allow all</div><div class="line">request_header_access Title allow all</div><div class="line">request_header_access Connection allow all</div><div class="line">request_header_access Proxy-Connection allow all</div><div class="line">request_header_access User-Agent allow all</div><div class="line">request_header_access Cookie allow all</div><div class="line">request_header_access All deny all</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">#### -----------------------------------------------------------</div><div class="line"># 配置文件 /etc/squid/squid.conf 可修改监听端口</div><div class="line">http_access deny all  修改成  http_access allow all</div><div class="line"># 日志目录 /var/log/squid 实时日志</div><div class="line">$ tail -f /var/log/squid/ access.log</div><div class="line">#### ------------------------------------------------------------</div><div class="line">打开浏览器设置代理，如果不成功，关闭防火墙，增加IP端口试试。</div><div class="line">$ /etc/init.d/iptables stop</div><div class="line">$ iptables -F</div><div class="line">$ netstat -punlt</div><div class="line">$ vim /etc/sysconfig/iptables</div><div class="line">-A INPUT -m state --state NEW -m tcp -p tcp --dport 3128 -j ACCEPT</div><div class="line">#### -------------------------------------------------------------</div><div class="line">测试 curl -I -s -x http://代理服务IP:3128 www.baidu.com</div></pre></td></tr></table></figure>
+<p>参考资料:</p>
+<p><a href="https://arashmilani.com/post?id=49" target="_blank" rel="external">https://arashmilani.com/post?id=49</a></p>
+<p><a href="http://www.cnblogs.com/apanly/p/5165294.html" target="_blank" rel="external">http://www.cnblogs.com/apanly/p/5165294.html</a></p>
+<p><a href="http://blog.csdn.net/skylinethj/article/details/43837277" target="_blank" rel="external">http://blog.csdn.net/skylinethj/article/details/43837277</a></p>
+<p><a href="https://github.com/onlyfu/Blog/blob/master/Chrome/%E4%B8%80%E8%B5%B7%E6%9D%A5%E5%81%9Achrome%E6%89%A9%E5%B1%95%E3%80%8A%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8localStorage%E3%80%8B.md" target="_blank" rel="external">https://github.com/onlyfu/Blog/blob/master/Chrome/%E4%B8%80%E8%B5%B7%E6%9D%A5%E5%81%9Achrome%E6%89%A9%E5%B1%95%E3%80%8A%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8localStorage%E3%80%8B.md</a></p>
+<p><a href="https://github.com/onlyfu/Blog/blob/master/Other/Vim%EF%BC%8C%E6%9E%81%E7%AE%80%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B%EF%BC%8C%E8%AE%A9%E4%BD%A0%E7%9E%AC%E9%97%B4%E8%84%B1%E7%A6%BB%E9%94%AE%E9%BC%A0%E5%88%87%E6%8D%A2%E7%9A%84%E7%97%9B%E8%8B%A6.md" target="_blank" rel="external">https://github.com/onlyfu/Blog/blob/master/Other/Vim%EF%BC%8C%E6%9E%81%E7%AE%80%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B%EF%BC%8C%E8%AE%A9%E4%BD%A0%E7%9E%AC%E9%97%B4%E8%84%B1%E7%A6%BB%E9%94%AE%E9%BC%A0%E5%88%87%E6%8D%A2%E7%9A%84%E7%97%9B%E8%8B%A6.md</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Squid/" rel="tag"># Squid</a>
+          
+            <a href="/tags/爬虫/" rel="tag"># 爬虫</a>
+          
+            <a href="/tags/代理/" rel="tag"># 代理</a>
+          
+            <a href="/tags/shell/" rel="tag"># shell</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/23/spring boot 设置contextPath/" rel="prev" title="spring-boot设置contextPath">
+                spring-boot设置contextPath <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="夏小天" />
+          <p class="site-author-name" itemprop="name">夏小天</p>
+           
+              <p class="site-description motion-element" itemprop="description">人人都是段子手</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">46</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Squid搭建代理服务器"><span class="nav-number">1.</span> <span class="nav-text">Squid搭建代理服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#first-install-squid"><span class="nav-number">1.0.1.</span> <span class="nav-text">first install squid</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#then-install-httpd-tools"><span class="nav-number">1.0.2.</span> <span class="nav-text">then install httpd-tools</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#then-create-a-file-to-store-passwords-in-it-and-change-the-ownership-of-it-so-Squid-can-access"><span class="nav-number">1.0.3.</span> <span class="nav-text">then create a file to store passwords in it and change the ownership of it so Squid can access</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#then-set-password-for-jack"><span class="nav-number">1.0.4.</span> <span class="nav-text">then set password for jack</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#test-password-is-ok"><span class="nav-number">1.0.5.</span> <span class="nav-text">test password is ok</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#then-in-etc-squid-squid-conf-and-add-following-lines-to-the-top-of-file-and-save-it"><span class="nav-number">1.0.6.</span> <span class="nav-text">then in /etc/squid/squid.conf and add following lines to the top of file. and save it</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#last-restart-squid"><span class="nav-number">1.0.7.</span> <span class="nav-text">last restart squid</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Remember-to-restart-the-Squid-service-after-deleting-the-user-line-in-the-file"><span class="nav-number">1.0.8.</span> <span class="nav-text">Remember to restart the Squid service after deleting the user line in the file</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Anonymizing-Traffic"><span class="nav-number">1.0.9.</span> <span class="nav-text">Anonymizing Traffic</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">夏小天</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "f0af53cafca946098c02c0c8e838b477",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

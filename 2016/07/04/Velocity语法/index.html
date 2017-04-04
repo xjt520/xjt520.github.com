@@ -1,0 +1,722 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="velocity," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="keywords" content="velocity">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Velocity语法">
+<meta property="og:url" content="https://zuimeidaima.com/2016/07/04/Velocity语法/index.html">
+<meta property="og:site_name" content="最美代码">
+<meta property="og:image" content="https://zuimeidaima.com/images/1.jpg">
+<meta property="og:updated_time" content="2017-03-18T03:01:46.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Velocity语法">
+<meta name="twitter:image" content="https://zuimeidaima.com/images/1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://zuimeidaima.com/2016/07/04/Velocity语法/"/>
+
+
+
+
+
+  <title> Velocity语法 | 最美代码 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">最美代码</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">好记性不如写博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://zuimeidaima.com/2016/07/04/Velocity语法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="夏小天">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="最美代码">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Velocity语法
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-04T14:25:34+08:00">
+                2016-07-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2016/07/04/Velocity语法/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/images/1.jpg"></p>
+<a id="more"></a>
+<h3 id="Velocity语法"><a href="#Velocity语法" class="headerlink" title="Velocity语法"></a>Velocity语法</h3><blockquote>
+<p>“#”用来标识Velocity的脚本语句，包括#set、#if 、#else、#end、#foreach、#end、#include、#parse、#macro等；</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">#if($info.imgs)</div><div class="line">&lt;img src=&quot;$info.imgs&quot; border=0&gt;</div><div class="line">#else</div><div class="line">&lt;img src=&quot;noPhoto.jpg&quot;&gt;</div><div class="line">#end</div><div class="line"></div><div class="line">#foreach( $info in $list) </div><div class="line">	$info.someList </div><div class="line">#end</div><div class="line"></div><div class="line">#macro(macroName)#end ##脚本函数(宏)调用，不推荐在界面模板中大量使用</div></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>“$”用来标识一个对象(或理解为变量)；</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$i</div><div class="line">$msg</div><div class="line">$TagUtil.options(...)</div><div class="line">$!obj 　##直接返回对象结果。</div></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>“{}”用来明确标识Velocity变量；</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">比如在页面中，页面中有一个$someonename，此时，Velocity将把someonename作为变量名，若我们程序是想在someone这 个变量的后面紧接着显示name字符，则上面的标签应该改成$&#123;someone&#125;name</div></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>“!”用来强制把不存在的变量显示为空白</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">如当页面中包含$msg，如果msg对象有值，将显示msg的值，如果不存在msg对象同，则在页面中将显示$msg字符。这是我们不希望的，为了把不存 在的变量或变量值为null的对象显示为空白，则只需要在变量名前加一个“!”号即可。</div><div class="line">如：$!msg</div></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>包含文件#inclue(“模板文件名”)或#parse(“模板文件名”)</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">主要用于处理具有相同内容的页面，比如每个网站的顶部或尾部内容。如：#parse(&quot;/blog/top.html&quot;)或#include(&quot;/blog/top.html&quot;)</div><div class="line">parse与include的区别在于，若包含的文件中有Velocity脚本标签，将会进一步解析，而include将原样显示。</div></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>关于#set的使用</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">在万不得已的时候，不要在页面视图自己声明Velocity脚本变量，也就是尽量少使用#set。有时候我们需要在页面中显示序号，而程序对象中又没有包 含这个序号属性同，可以自己定义。如在一个循环体系中，如下所示：</div><div class="line">#set ($i=0)</div><div class="line">#foreach($info in $list)</div><div class="line">序号:$i</div><div class="line">#set($i=$i+1)</div><div class="line">#end</div></pre></td></tr></table></figure>
+<blockquote>
+<p>语法摘要</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div></pre></td><td class="code"><pre><div class="line">1、声明:#set ($var=XXX)</div><div class="line">左边可以是以下的内容</div><div class="line">Variable reference</div><div class="line">String literal</div><div class="line">Property reference</div><div class="line">Method reference</div><div class="line">Number literal #set ($i=1)</div><div class="line">ArrayList #set ($arr=[&quot;yt1&quot;,&quot;t2&quot;])</div><div class="line">算术运算符</div><div class="line"></div><div class="line">2、注释:</div><div class="line">单行## XXX</div><div class="line">多行#* xxx</div><div class="line">xxxx</div><div class="line">xxxxxxxxxxxx*#</div><div class="line"></div><div class="line">References 引用的类型</div><div class="line">3、变量 Variables</div><div class="line">以 &quot;$&quot; 开头，第一个字符必须为字母。character followed by a VTL Identifier. (a .. z or A .. Z).</div><div class="line">变量可以包含的字符有以下内容：</div><div class="line">alphabetic (a .. z, A .. Z)</div><div class="line">numeric (0 .. 9)</div><div class="line">hyphen (&quot;-&quot;)</div><div class="line">underscore (&quot;_&quot;)</div><div class="line"></div><div class="line">4、Properties</div><div class="line">$Identifier.Identifier</div><div class="line">$user.name</div><div class="line">hashtable user中的的name值.类似：user.get(&quot;name&quot;)</div><div class="line"></div><div class="line">5、Methods</div><div class="line">object user.getName() = $user.getName()</div><div class="line"></div><div class="line">6、Formal Reference Notation</div><div class="line">用&#123;&#125;把变量名跟字符串分开</div><div class="line"></div><div class="line">如</div><div class="line">#set ($user=&quot;csy&quot;&#125;</div><div class="line">$&#123;user&#125;name</div><div class="line">返回csyname</div><div class="line"></div><div class="line">$username</div><div class="line">$!username</div><div class="line">$与$!的区别</div><div class="line">当找不到username的时候，$username返回字符串&quot;$username&quot;，而$!username返回空字符串&quot;&quot;</div><div class="line"></div><div class="line">7、双引号 与 引号</div><div class="line">#set ($var=&quot;helo&quot;)</div><div class="line">test&quot;$var&quot; 返回testhello</div><div class="line">test&apos;$var&apos; 返回test&apos;$var&apos;</div><div class="line">可以通过设置 stringliterals.interpolate=false改变默认处理方式</div><div class="line"></div><div class="line">8、条件语句</div><div class="line">#if( $foo )</div><div class="line">&lt;strong&gt;Velocity!&lt;/strong&gt;</div><div class="line">#end</div><div class="line">#if($foo)</div><div class="line">#elseif()</div><div class="line">#else</div><div class="line">#end</div><div class="line">当$foo为null或为Boolean对象的false值执行.</div><div class="line"></div><div class="line">9、逻辑运算符:== &amp;&amp; || !</div><div class="line"></div><div class="line">10、循环语句#foreach($var in $arrays ) // 集合包含下面三种Vector, a Hashtable or an Array</div><div class="line">#end</div><div class="line">#foreach( $product in $allProducts )</div><div class="line">&lt;li&gt;$product&lt;/li&gt;</div><div class="line">#end</div><div class="line"></div><div class="line">#foreach( $key in $allProducts.keySet() )</div><div class="line">&lt;li&gt;Key: $key -&gt; Value: $allProducts.get($key)&lt;/li&gt;</div><div class="line">#end</div><div class="line"></div><div class="line">#foreach( $customer in $customerList )</div><div class="line">&lt;tr&gt;&lt;td&gt;$velocityCount&lt;/td&gt;&lt;td&gt;$customer.Name&lt;/td&gt;&lt;/tr&gt;</div><div class="line">#end</div><div class="line"></div><div class="line">11、velocityCount变量在配置文件中定义</div><div class="line"># Default name of the loop counter</div><div class="line"># variable reference.</div><div class="line">directive.foreach.counter.name = velocityCount</div><div class="line"># Default starting value of the loop</div><div class="line"># counter variable reference.</div><div class="line">directive.foreach.counter.initial.value = 1</div><div class="line"></div><div class="line">12、包含文件</div><div class="line">#include( &quot;one.gif&quot;,&quot;two.txt&quot;,&quot;three.htm&quot; )</div><div class="line"></div><div class="line">13、Parse导入脚本</div><div class="line">#parse(&quot;me.vm&quot; )</div><div class="line"></div><div class="line">14、#stop 停止执行并返回</div><div class="line"></div><div class="line">15、定义宏Velocimacros ,相当于函数 支持包含功能</div><div class="line">#macro( d )</div><div class="line">&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;</div><div class="line">#end</div><div class="line">调用</div><div class="line">#d()</div><div class="line"></div><div class="line">16、带参数的宏</div><div class="line">#macro( tablerows $color $somelist )</div><div class="line">#foreach( $something in $somelist )</div><div class="line">&lt;tr&gt;&lt;td bgcolor=$color&gt;$something&lt;/td&gt;&lt;/tr&gt;</div><div class="line">#end</div><div class="line">#end</div><div class="line"></div><div class="line">17、Range Operator</div><div class="line">#foreach( $foo in [1..5] )</div></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/velocity/" rel="tag"># velocity</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/06/Mac Redis使用/" rel="next" title="Mac Redis 使用">
+                <i class="fa fa-chevron-left"></i> Mac Redis 使用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/06/22/maven的resources、filter和profile实现不同环境使用不同配置文件/" rel="prev" title="maven的resources、filter和profile实现不同环境使用不同配置文件">
+                maven的resources、filter和profile实现不同环境使用不同配置文件 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="夏小天" />
+          <p class="site-author-name" itemprop="name">夏小天</p>
+           
+              <p class="site-description motion-element" itemprop="description">人人都是段子手</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">46</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Velocity语法"><span class="nav-number">1.</span> <span class="nav-text">Velocity语法</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">夏小天</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "f0af53cafca946098c02c0c8e838b477",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
